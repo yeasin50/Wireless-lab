@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:layout_weight="1"
+              android:orientation="horizontal"
+              android:weightSum="4">
+
+    <Button
+            android:onClick="digitEventHandler"
+            android:id="@+id/btnSevenID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="7"
+             />
+
+    <Button
+            android:onClick="digitEventHandler"
+            android:id="@+id/btnEightID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="8"
+            />
+
+    <Button
+            android:onClick="digitEventHandler"
+            android:id="@+id/btnNineID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="9"
+          />
+
+    <Button
+            android:onClick="operationEventHandler"
+            android:id="@+id/btnMultiID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="x"
+         />
+
+
+</LinearLayout>

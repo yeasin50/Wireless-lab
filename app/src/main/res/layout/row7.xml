@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="0dp"
+              android:layout_weight="1"
+              android:orientation="horizontal"
+              android:weightSum="4">
+
+    <Button
+            android:onClick="operationEventHandler"
+            android:id="@+id/btnNeg1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="+/-"
+            />
+
+    <Button
+            android:onClick="digitEventHandler"
+            android:id="@+id/btnZeroID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="0"
+            />
+
+    <Button
+            android:onClick="operationEventHandler"
+            android:id="@+id/btnDecimalPoint"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="."
+            />
+
+    <Button
+            android:onClick="operationEventHandler"
+            android:id="@+id/btnEqualID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="="
+            />
+
+
+</LinearLayout>
+

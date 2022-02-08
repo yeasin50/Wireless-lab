@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="0dp" android:weightSum="6"
+              android:layout_weight="1"
+>
+    <Button
+            android:onClick="memoryEventHandler"
+            android:id="@+id/btnMCID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="MC"
+             />
+
+    <Button
+            android:onClick="memoryEventHandler"
+            android:id="@+id/btnMRID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="MR"
+            />
+
+    <Button
+            android:onClick="memoryEventHandler"
+            android:id="@+id/btnMPlusID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="M+"
+            android:textSize="18sp"/>
+
+    <Button
+            android:onClick="memoryEventHandler"
+            android:id="@+id/btnMMinID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="M-"
+           />
+
+    <Button
+            android:onClick="memoryEventHandler"
+            android:id="@+id/btnMSID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Ms"
+             />
+
+    <Button
+            android:onClick="memoryEventHandler"
+            android:id="@+id/btnMID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="M"
+           />
+
+</LinearLayout>
+
+

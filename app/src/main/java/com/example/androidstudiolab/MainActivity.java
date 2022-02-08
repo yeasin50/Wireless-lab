@@ -1,35 +1,114 @@
 package com.example.androidstudiolab;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
+import static android.content.ContentValues.TAG;
+
 public class MainActivity extends AppCompatActivity {
 
-    EditText firstNameEditText, lastNameEditText;
+    TextView primaryTextView, secondaryTextView;
 
+
+    String primaryText;
+    String secondaryText;
+    String operator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        firstNameEditText = findViewById(R.id.firstNameEditTextId);
-        lastNameEditText = findViewById(R.id.lastNameEditTextId);
+
+        primaryTextView = findViewById(R.id.textViewPrimaryID);
+        secondaryTextView = findViewById(R.id.textViewSecondaryID);
 
     }
 
-    public void submitFunction(View view) {
-        /// get user fistName from `EditText`
-        final String firstName = firstNameEditText.getText().toString();
 
-        /// get user lastName from `EditText`
-        final String lastName = lastNameEditText.getText().toString();
-        Toast.makeText(this, "Thank you " + firstName + " " + lastName + "!", Toast.LENGTH_LONG).show();
+    /// get digit/button event 0-9
+    public void digitEventHandler(View view) {
 
-        //clear the editText text
-        firstNameEditText.setText(null);
-        lastNameEditText.setText(null);
+        switch (view.getId()) {
+
+            case R.id.btnZeroID:
+                primaryText += "0";
+                break;
+
+            case R.id.btnOneID:
+                primaryText += "1";
+                break;
+
+            case R.id.btnTwoID:
+                primaryText += "2";
+                break;
+
+            case R.id.btnThreeID:
+                primaryText += "3";
+                break;
+
+            case R.id.btnFourID:
+                primaryText += "4";
+                break;
+
+            case R.id.btnFiveID:
+                primaryText += "5";
+                break;
+            case R.id.btnSixID:
+                primaryText += "6";
+                break;
+
+            case R.id.btnSevenID:
+                primaryText += "7";
+                break;
+
+            case R.id.btnEightID:
+                primaryText += "8";
+                break;
+
+            case R.id.btnNineID:
+                primaryText += "9";
+                break;
+
+
+        }
+
+        Log.i(TAG, "digitEventHandler: " + primaryText);
+
+    }
+
+    /// arithmetic operations
+    public void operationEventHandler(View view) {
+
+        switch (view.getId()) {
+
+            case R.id.btnAddID:
+                operator = "+";
+                break;
+
+            case R.id.btnSubID:
+                operator = "-";
+                break;
+
+            case R.id.btnMultiID:
+                operator = "x";
+                break;
+
+            case R.id.btnDivID:
+                operator = "/";
+                break;
+
+        }
+
+        Log.i(TAG, "operationEventHandler: " + operator);
+    }
+
+
+    /// only memory related operations
+    public void memoryEventHandler(View view) {
     }
 }
