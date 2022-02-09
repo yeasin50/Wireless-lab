@@ -15,9 +15,10 @@ public class MainActivity extends AppCompatActivity {
     TextView primaryTextView, secondaryTextView;
 
 
-    String primaryText;
-    String secondaryText;
-    String operator;
+    String primaryText = "";
+    String secondaryText = "";
+
+    String operator = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,76 +34,91 @@ public class MainActivity extends AppCompatActivity {
     /// get digit/button event 0-9
     public void digitEventHandler(View view) {
 
-        switch (view.getId()) {
-
-            case R.id.btnZeroID:
-                primaryText += "0";
-                break;
-
-            case R.id.btnOneID:
-                primaryText += "1";
-                break;
-
-            case R.id.btnTwoID:
-                primaryText += "2";
-                break;
-
-            case R.id.btnThreeID:
-                primaryText += "3";
-                break;
-
-            case R.id.btnFourID:
-                primaryText += "4";
-                break;
-
-            case R.id.btnFiveID:
-                primaryText += "5";
-                break;
-            case R.id.btnSixID:
-                primaryText += "6";
-                break;
-
-            case R.id.btnSevenID:
-                primaryText += "7";
-                break;
-
-            case R.id.btnEightID:
-                primaryText += "8";
-                break;
-
-            case R.id.btnNineID:
-                primaryText += "9";
-                break;
-
-
+        int id = view.getId();
+        if (id == R.id.btnZeroID) {
+            primaryText += "0";
+        } else if (id == R.id.btnOneID) {
+            primaryText += "1";
+        } else if (id == R.id.btnTwoID) {
+            primaryText += "2";
+        } else if (id == R.id.btnThreeID) {
+            primaryText += "3";
+        } else if (id == R.id.btnFourID) {
+            primaryText += "4";
+        } else if (id == R.id.btnFiveID) {
+            primaryText += "5";
+        } else if (id == R.id.btnSixID) {
+            primaryText += "6";
+        } else if (id == R.id.btnSevenID) {
+            primaryText += "7";
+        } else if (id == R.id.btnEightID) {
+            primaryText += "8";
+        } else if (id == R.id.btnNineID) {
+            primaryText += "9";
         }
 
+        primaryTextView.setText(primaryText);
         Log.i(TAG, "digitEventHandler: " + primaryText);
+
+    }
+
+    double _parseNumber(String stringNum) {
+        return Double.parseDouble(stringNum);
+    }
+
+    ///perform calculation
+    void
+    _calculateResult() {
+        final double _num1 = _parseNumber(primaryText);
+        final double _num2 = _parseNumber(secondaryText);
+
+        Log.i(TAG, "_calculateResult: " + _num1 + " " + _num2);
+        switch (operator) {
+            case "+":
+                primaryTextView.setText(String.format("%s", _num1 + _num2));
+                break;
+            case "-":
+                primaryTextView.setText(String.format("%s", _num2 - _num1));
+                break;
+            case "x":
+                primaryTextView.setText(String.format("%s", _num2 * _num1));
+                break;
+            case "/": //todo: change division
+                primaryTextView.setText(String.format("%s", _num2 / _num1));
+                break;
+        }
+
+        secondaryTextView.setText(String.format("%s %s %s", secondaryText, operator, primaryText));
 
     }
 
     /// arithmetic operations
     public void operationEventHandler(View view) {
+        int id = view.getId();
+        if (id == R.id.btnAddID) {
+            operator = "+";
+        } else if (id == R.id.btnSubID) {
+            operator = "-";
+        } else if (id == R.id.btnMultiID) {
+            operator = "x";
+        } else if (id == R.id.btnDivID) {
+            operator = "/";
+        } else if (id == R.id.btnEqualID) {
+            _calculateResult();
+            return;
 
-        switch (view.getId()) {
-
-            case R.id.btnAddID:
-                operator = "+";
-                break;
-
-            case R.id.btnSubID:
-                operator = "-";
-                break;
-
-            case R.id.btnMultiID:
-                operator = "x";
-                break;
-
-            case R.id.btnDivID:
-                operator = "/";
-                break;
-
+        } else if (id == R.id.btnCID) {
+            primaryText = "";
+            secondaryText = "";
+            operator = "";
+            primaryTextView.setText(primaryText);
+            secondaryTextView.setText(secondaryText);
+            return;
         }
+        secondaryText += primaryText;
+        primaryText = "";
+        secondaryTextView.setText(String.format("%s %s", secondaryText, operator));
+        primaryTextView.setText("0");
 
         Log.i(TAG, "operationEventHandler: " + operator);
     }
