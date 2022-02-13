@@ -2,7 +2,6 @@ package com.example.androidstudiolab;
 
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,11 +13,12 @@ public class MainActivity extends AppCompatActivity {
 
     TextView primaryTextView, secondaryTextView;
 
+    String primaryOperator = null, tempOperator = null;
 
-    String primaryText = "";
-    String secondaryText = "";
+    Double primaryNumber = null;
+    Double result = null;
+    Double secondaryNumber;
 
-    String operator = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,97 +34,121 @@ public class MainActivity extends AppCompatActivity {
     /// get digit/button event 0-9
     public void digitEventHandler(View view) {
 
-        int id = view.getId();
+        int id = view.getId(); // get tappedButtonId
+        String tappedButtonNumber = "";
+
         if (id == R.id.btnZeroID) {
-            primaryText += "0";
+            tappedButtonNumber = "0";
         } else if (id == R.id.btnOneID) {
-            primaryText += "1";
+            tappedButtonNumber = "1";
         } else if (id == R.id.btnTwoID) {
-            primaryText += "2";
+            tappedButtonNumber = "2";
         } else if (id == R.id.btnThreeID) {
-            primaryText += "3";
+            tappedButtonNumber = "3";
         } else if (id == R.id.btnFourID) {
-            primaryText += "4";
+            tappedButtonNumber = "4";
         } else if (id == R.id.btnFiveID) {
-            primaryText += "5";
+            tappedButtonNumber = "5";
         } else if (id == R.id.btnSixID) {
-            primaryText += "6";
+            tappedButtonNumber = "6";
         } else if (id == R.id.btnSevenID) {
-            primaryText += "7";
+            tappedButtonNumber = "7";
         } else if (id == R.id.btnEightID) {
-            primaryText += "8";
+            tappedButtonNumber = "8";
         } else if (id == R.id.btnNineID) {
-            primaryText += "9";
+            tappedButtonNumber = "9";
         }
 
-        primaryTextView.setText(primaryText);
-        Log.i(TAG, "digitEventHandler: " + primaryText);
-
+        /// if primaryTextView contains `0`, replace the `0` with tapped digit, else extend numberString
+        if (primaryTextView.getText().toString().equals("0")) {
+            primaryTextView.setText(tappedButtonNumber);
+        } else {
+            primaryTextView.setText(String.format("%s%s", primaryTextView.getText().toString(), tappedButtonNumber));
+        }
+        Log.i(TAG, "digitEventHandler: tappedDigit " + tappedButtonNumber);
     }
 
     double _parseNumber(String stringNum) {
         return Double.parseDouble(stringNum);
     }
 
-    ///perform calculation
-    void
-    _calculateResult() {
-        final double _num1 = _parseNumber(primaryText);
-        final double _num2 = _parseNumber(secondaryText);
-
-        Log.i(TAG, "_calculateResult: " + _num1 + " " + _num2);
-        switch (operator) {
+    /// perform calculation
+    double _calculateResult() {
+        Log.i(TAG, "_calculateResult: " + secondaryNumber + primaryNumber);
+        switch (primaryOperator) {
             case "+":
-                primaryTextView.setText(String.format("%s", _num1 + _num2));
-                break;
-            case "-":
-                primaryTextView.setText(String.format("%s", _num2 - _num1));
-                break;
-            case "x":
-                primaryTextView.setText(String.format("%s", _num2 * _num1));
-                break;
-            case "/": //todo: change division
-                primaryTextView.setText(String.format("%s", _num2 / _num1));
-                break;
-        }
+                return secondaryNumber + primaryNumber;
 
-        secondaryTextView.setText(String.format("%s %s %s", secondaryText, operator, primaryText));
+            case "-":
+                return secondaryNumber - primaryNumber;
+
+            case "x":
+                return secondaryNumber * primaryNumber;
+
+            case "/": //todo: change division
+                return secondaryNumber / primaryNumber;
+
+            default:
+                return 0;
+        }
 
     }
 
     /// arithmetic operations
     public void operationEventHandler(View view) {
         int id = view.getId();
+
         if (id == R.id.btnAddID) {
-            operator = "+";
+            tempOperator = "+";
         } else if (id == R.id.btnSubID) {
-            operator = "-";
+            tempOperator = "-";
         } else if (id == R.id.btnMultiID) {
-            operator = "x";
+            tempOperator = "x";
         } else if (id == R.id.btnDivID) {
-            operator = "/";
+            tempOperator = "/";
         } else if (id == R.id.btnEqualID) {
-            _calculateResult();
-            return;
+//            result = _calculateResult();
+            Log.i(TAG, "operationEventHandler: EQ bottom");
 
-        } else if (id == R.id.btnCID) {
-            primaryText = "";
-            secondaryText = "";
-            operator = "";
-            primaryTextView.setText(primaryText);
-            secondaryTextView.setText(secondaryText);
-            return;
         }
-        secondaryText += primaryText;
-        primaryText = "";
-        secondaryTextView.setText(String.format("%s %s", secondaryText, operator));
-        primaryTextView.setText("0");
-
-        Log.i(TAG, "operationEventHandler: " + operator);
+        initTextViewData();
     }
 
+
+    /// if secondaryNumber is not null perform arithmetic Operation and show result on primaryTextView
+    // else just assign the on primaryTextFiled number on secondaryTextView with operator
+    void initTextViewData() {
+
+        if (secondaryNumber == null) { //todo: being nullable, recheck
+            secondaryNumber = _parseNumber(primaryTextView.getText().toString());
+            primaryNumber = null;
+            primaryTextView.setText("0");
+            secondaryTextView.setText(String.format("%s %s", secondaryNumber, tempOperator));
+            primaryOperator = tempOperator;
+        } else { // we have secondaryNumber, operator(primary)
+
+            //todo:handle view
+
+        }
+
+    }
+
+
+    ///clear Button tapEvent
+    public void handleClearEvent(View view) {
+        primaryNumber = null;
+        result = null;
+        secondaryNumber = null;
+        tempOperator = "";
+        primaryOperator = null;
+
+        primaryTextView.setText("0");
+        secondaryTextView.setText(null);
+    }
 
     /// only memory related operations
     public void memoryEventHandler(View view) {
     }
+
+
 }
