@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import com.example.androidstudiolab.utils.Utils;
 
 import static android.content.ContentValues.TAG;
 
@@ -13,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView primaryTextView, secondaryTextView;
 
-    String primaryOperator = null, tempOperator = null;
+    String primaryOperator = null;
 
     Double primaryNumber = null;
     Double result = null;
@@ -27,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
 
         primaryTextView = findViewById(R.id.textViewPrimaryID);
         secondaryTextView = findViewById(R.id.textViewSecondaryID);
-
     }
 
 
@@ -68,9 +68,6 @@ public class MainActivity extends AppCompatActivity {
         Log.i(TAG, "digitEventHandler: tappedDigit " + tappedButtonNumber);
     }
 
-    double _parseNumber(String stringNum) {
-        return Double.parseDouble(stringNum);
-    }
 
     /// perform calculation
     double _calculateResult() {
@@ -99,47 +96,56 @@ public class MainActivity extends AppCompatActivity {
         int id = view.getId();
 
         if (id == R.id.btnAddID) {
-            tempOperator = "+";
+            primaryOperator = "+";
         } else if (id == R.id.btnSubID) {
-            tempOperator = "-";
+            primaryOperator = "-";
         } else if (id == R.id.btnMultiID) {
-            tempOperator = "x";
+            primaryOperator = "x";
         } else if (id == R.id.btnDivID) {
-            tempOperator = "/";
+            primaryOperator = "/";
         } else if (id == R.id.btnEqualID) {
-//            result = _calculateResult();
-            Log.i(TAG, "operationEventHandler: EQ bottom");
-
+            _equalOperatorHandler();
+            return;
         }
+
         initTextViewData();
+
+        Log.i(TAG, "operationEventHandler: primaryOperator" + primaryOperator);
     }
 
 
     /// if secondaryNumber is not null perform arithmetic Operation and show result on primaryTextView
     // else just assign the on primaryTextFiled number on secondaryTextView with operator
     void initTextViewData() {
-
         if (secondaryNumber == null) { //todo: being nullable, recheck
-            secondaryNumber = _parseNumber(primaryTextView.getText().toString());
+            secondaryNumber = Utils.parseTextViewNumber(primaryTextView);
             primaryNumber = null;
             primaryTextView.setText("0");
-            secondaryTextView.setText(String.format("%s %s", secondaryNumber, tempOperator));
-            primaryOperator = tempOperator;
-        } else { // we have secondaryNumber, operator(primary)
+            secondaryTextView.setText(String.format("%s %s", Utils.rmZeroString(secondaryNumber), primaryOperator));
 
+        } else { // we have secondaryNumber, operator(primary)
             //todo:handle view
+            secondaryTextView.setText(String.format("%s %s", Utils.rmZeroString(secondaryNumber), primaryOperator));
 
         }
-
     }
 
+
+    /// Equal Button TapHandler
+    void _equalOperatorHandler() {
+        primaryNumber = Utils.parseTextViewNumber(primaryTextView);
+        double result = _calculateResult();
+
+        primaryTextView.setText(Utils.rmZeroString(result));
+        secondaryTextView.setText(String.format("%s %s %s", Utils.rmZeroString(secondaryNumber), primaryOperator, Utils.rmZeroString(primaryNumber)));
+
+    }
 
     ///clear Button tapEvent
     public void handleClearEvent(View view) {
         primaryNumber = null;
         result = null;
         secondaryNumber = null;
-        tempOperator = "";
         primaryOperator = null;
 
         primaryTextView.setText("0");
