@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    /// get digit/button event 0-9
+    /// get digit/button event 0-9 and '.'
     public void digitEventHandler(View view) {
 
         int id = view.getId(); // get tappedButtonId
@@ -57,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
             tappedButtonNumber = "8";
         } else if (id == R.id.btnNineID) {
             tappedButtonNumber = "9";
+        } else if (id == R.id.btnDecimalPoint) {
+            tappedButtonNumber = ".";
+            if (primaryTextView.getText().toString().contains(".")) return;
         }
 
         /// if primaryTextView contains `0`, replace the `0` with tapped digit, else extend numberString
