@@ -94,8 +94,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     /// arithmetic operations
-    public void operationEventHandler(View view) {
+    public void basicArithmeticEventHandler(View view) {
         int id = view.getId();
 
         if (id == R.id.btnAddID) {
@@ -106,11 +107,21 @@ public class MainActivity extends AppCompatActivity {
             primaryOperator = "x";
         } else if (id == R.id.btnDivID) {
             primaryOperator = "/";
+        }
+        initTextViewData();
+    }
+
+
+    public void operationEventHandler(View view) {
+        int id = view.getId();
+
+        if (id == R.id.btnBackID) {
+            _backButtonEvent();
+            return;
         } else if (id == R.id.btnEqualID) {
             _equalOperatorHandler();
             return;
         }
-
         initTextViewData();
 
         Log.i(TAG, "operationEventHandler: primaryOperator" + primaryOperator);
@@ -133,6 +144,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    ///back button handler
+    void _backButtonEvent() {
+        final String currentText = primaryTextView.getText().toString();
+        if (currentText.equals("0"))
+            return;
+
+        final String subString = currentText.substring(0, currentText.length() - 1);
+        primaryTextView.setText(subString.isEmpty() ? "0" : subString);
+    }
 
     /// Equal Button TapHandler
     void _equalOperatorHandler() {

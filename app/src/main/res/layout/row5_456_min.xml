@@ -37,7 +37,7 @@
              />
 
     <Button
-            android:onClick="operationEventHandler"
+            android:onClick="basicArithmeticEventHandler"
             android:id="@+id/btnSubID"
             android:layout_width="0dp"
             android:layout_height="match_parent"
