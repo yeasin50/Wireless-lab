@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="0dp" android:weightSum="4"
+              android:layout_weight="1"
+>
+
+    <Button
+            android:onClick="operationEventHandler"
+            android:id="@+id/btnPercentageID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+
+            android:layout_weight="1"
+            android:text="%"
+         />
+
+    <Button
+            android:onClick="operationEventHandler"
+            android:id="@+id/btnCEID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="CE"
+          />
+
+    <Button
+            android:onClick="handleClearEvent"
+            android:id="@+id/btnCID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="C"
+           />
+
+    <Button
+            android:onClick="operationEventHandler"
+            android:id="@+id/btnBackID"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Back"
+             />
+</LinearLayout>

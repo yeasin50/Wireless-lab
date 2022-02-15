@@ -7,38 +7,50 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
+        android:weightSum="9"
         tools:context=".MainActivity">
+
     <TextView
+            android:id="@+id/textViewSecondaryID"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello"
-            android:background="@color/purple_200"
-            android:textAlignment="center"
-            android:textSize="133px"
-    />
-    <EditText
-            android:gravity="center"
+            android:layout_height="0dp"
+            android:layout_weight=".70"
+            android:background="#D88B8B"
+            android:gravity="right"/>
+
+    <TextView
+            android:id="@+id/textViewPrimaryID"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter First Name"
-            android:id="@+id/firstNameEditTextId"
-            android:textSize="73px"
-    />
-    <EditText
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter last Name"
-            android:id="@+id/lastNameEditTextId"
-            android:textSize="73px"
-    />
+            android:layout_height="0dp"
+            android:layout_weight="1.3"
+            android:background="#8BD8AE"
+            android:gravity="right"
+            android:text="0"
+            android:textSize="24sp"/>
+
+    <include
+            layout="@layout/row1_memory"/>
 
 
-    <Button android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="show Toast"
-            android:onClick="submitFunction"
-    />
+    <include
+            layout="@layout/row2_pcb"/>
+
+    <include
+            layout="@layout/row3_root_div"/>
+
+    <include
+            layout="@layout/row4_789" android:layout_height="wrap_content"/>
+
+    <include
+            layout="@layout/row5_456_min"/>
+
+    <include
+            layout="@layout/row6_123_multi"/>
+    <include
+            layout="@layout/row7"/>
+
+
+
+
 
 </LinearLayout>
