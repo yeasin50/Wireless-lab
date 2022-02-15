@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     TextView primaryTextView, secondaryTextView;
 
     String currentOperand = null;
-    String previousOperand = null;
+    boolean isEqualTapped = false;
 
     Double primaryNumber = null;
     Double result = null;
@@ -140,10 +140,10 @@ public class MainActivity extends AppCompatActivity {
     void updateView() {
         primaryNumber = Utils.parseTextViewNumber(primaryTextView);
 
-        if (previousOperand != null) {
+        if (isEqualTapped) {
             secondaryNumber = primaryNumber;
             secondaryTextView.setText(String.format("%s %s", Utils.rmZeroString(secondaryNumber), currentOperand));
-            previousOperand = null;
+            isEqualTapped = false;
         } else if (secondaryNumber == null) {
             secondaryNumber = primaryNumber;
             secondaryTextView.setText(String.format("%s %s", Utils.rmZeroString(secondaryNumber), currentOperand));
@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         primaryTextView.setText(Utils.rmZeroString(result));
         secondaryTextView.setText(String.format("%s %s %s", Utils.rmZeroString(secondaryNumber), currentOperand, Utils.rmZeroString(primaryNumber)));
         secondaryNumber = result;
-        previousOperand = "=";
+        isEqualTapped = true;
     }
 
     ///clear Button tapEvent
