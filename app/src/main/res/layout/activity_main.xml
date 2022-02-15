@@ -47,6 +47,7 @@
 
     <include
             layout="@layout/row6_123_multi"/>
+
     <include
             layout="@layout/row7"/>
 
