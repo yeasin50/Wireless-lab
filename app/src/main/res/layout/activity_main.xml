@@ -16,7 +16,7 @@
             android:layout_height="0dp"
             android:layout_weight=".70"
             android:background="#D88B8B"
-            android:gravity="right"/>
+            android:gravity="right" android:textSize="16sp"/>
 
     <TextView
             android:id="@+id/textViewPrimaryID"
@@ -24,7 +24,8 @@
             android:layout_height="0dp"
             android:layout_weight="1.3"
             android:background="#8BD8AE"
-            android:gravity="right"
+            android:gravity="center_vertical"
+            android:textAlignment="textEnd"
             android:text="0"
             android:textSize="24sp"/>
 
@@ -39,7 +40,7 @@
             layout="@layout/row3_root_div"/>
 
     <include
-            layout="@layout/row4_789" android:layout_height="wrap_content"/>
+            layout="@layout/row4_789"/>
 
     <include
             layout="@layout/row5_456_min"/>
@@ -48,9 +49,6 @@
             layout="@layout/row6_123_multi"/>
     <include
             layout="@layout/row7"/>
-
-
-
 
 
 </LinearLayout>
