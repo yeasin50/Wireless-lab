@@ -8,14 +8,12 @@ import static android.content.ContentValues.TAG;
 public class Utils {
 
     public static double parseTextViewNumber(TextView textView) {
-
         double number = 0;
         try {
             number = Double.parseDouble(textView.getText().toString());
         } catch (Exception e) {
             Log.i(TAG, "parseTextViewNumber: " + e.getMessage());
         }
-
         return number;
     }
 
