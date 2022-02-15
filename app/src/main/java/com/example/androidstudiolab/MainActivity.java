@@ -14,7 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
     TextView primaryTextView, secondaryTextView;
 
-    String primaryOperator = null;
+    String currentOperand = null;
+    String previousOperand = null;
 
     Double primaryNumber = null;
     Double result = null;
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     /// perform calculation
     double _calculateResult() {
         Log.i(TAG, "_calculateResult: " + secondaryNumber + primaryNumber);
-        switch (primaryOperator) {
+        switch (currentOperand) {
             case "+":
                 return secondaryNumber + primaryNumber;
 
@@ -100,15 +101,19 @@ public class MainActivity extends AppCompatActivity {
         int id = view.getId();
 
         if (id == R.id.btnAddID) {
-            primaryOperator = "+";
+            currentOperand = "+";
         } else if (id == R.id.btnSubID) {
-            primaryOperator = "-";
+            currentOperand = "-";
         } else if (id == R.id.btnMultiID) {
-            primaryOperator = "x";
+            currentOperand = "x";
         } else if (id == R.id.btnDivID) {
-            primaryOperator = "/";
+            currentOperand = "/";
         }
-        initTextViewData();
+        if (primaryTextView.getText().toString().equals("0")) {
+            secondaryTextView.setText(String.format("%s %s", Utils.rmZeroString(secondaryNumber), currentOperand));
+            return;
+        }
+        updateView();
     }
 
 
@@ -118,30 +123,39 @@ public class MainActivity extends AppCompatActivity {
         if (id == R.id.btnBackID) {
             _backButtonEvent();
             return;
+        } else if (id == R.id.btnCEID) {
+            primaryNumber = null;
+            primaryTextView.setText("0");
+            return;
         } else if (id == R.id.btnEqualID) {
             _equalOperatorHandler();
             return;
         }
-        initTextViewData();
-
-        Log.i(TAG, "operationEventHandler: primaryOperator" + primaryOperator);
+        Log.i(TAG, "operationEventHandler: primaryOperator" + currentOperand);
     }
 
 
     /// if secondaryNumber is not null perform arithmetic Operation and show result on primaryTextView
     // else just assign the on primaryTextFiled number on secondaryTextView with operator
-    void initTextViewData() {
-        if (secondaryNumber == null) { //todo: being nullable, recheck
-            secondaryNumber = Utils.parseTextViewNumber(primaryTextView);
-            primaryNumber = null;
-            primaryTextView.setText("0");
-            secondaryTextView.setText(String.format("%s %s", Utils.rmZeroString(secondaryNumber), primaryOperator));
+    void updateView() {
+        primaryNumber = Utils.parseTextViewNumber(primaryTextView);
 
-        } else { // we have secondaryNumber, operator(primary)
-            //todo:handle view
-            secondaryTextView.setText(String.format("%s %s", Utils.rmZeroString(secondaryNumber), primaryOperator));
+        if (previousOperand != null) {
+            secondaryNumber = primaryNumber;
+            secondaryTextView.setText(String.format("%s %s", Utils.rmZeroString(secondaryNumber), currentOperand));
+            previousOperand = null;
+        } else if (secondaryNumber == null) {
+            secondaryNumber = primaryNumber;
+            secondaryTextView.setText(String.format("%s %s", Utils.rmZeroString(secondaryNumber), currentOperand));
 
+        } else {
+            final double result = _calculateResult();
+            secondaryTextView.setText(String.format("%s %s", Utils.rmZeroString(result), currentOperand));
+            secondaryNumber = result;
         }
+        primaryNumber = null;
+        primaryTextView.setText("0");
+
     }
 
 
@@ -159,10 +173,10 @@ public class MainActivity extends AppCompatActivity {
     void _equalOperatorHandler() {
         primaryNumber = Utils.parseTextViewNumber(primaryTextView);
         double result = _calculateResult();
-
         primaryTextView.setText(Utils.rmZeroString(result));
-        secondaryTextView.setText(String.format("%s %s %s", Utils.rmZeroString(secondaryNumber), primaryOperator, Utils.rmZeroString(primaryNumber)));
-
+        secondaryTextView.setText(String.format("%s %s %s", Utils.rmZeroString(secondaryNumber), currentOperand, Utils.rmZeroString(primaryNumber)));
+        secondaryNumber = result;
+        previousOperand = "=";
     }
 
     ///clear Button tapEvent
@@ -170,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         primaryNumber = null;
         result = null;
         secondaryNumber = null;
-        primaryOperator = null;
+        currentOperand = null;
 
         primaryTextView.setText("0");
         secondaryTextView.setText(null);
