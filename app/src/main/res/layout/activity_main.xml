@@ -9,4 +9,33 @@
         android:gravity="center"
         tools:context=".MainActivity">
 
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:weightSum="2"
+                  android:layout_height="wrap_content">
+
+        <Button android:layout_width="0dp"
+                android:id="@+id/btn1"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="Show A"
+                android:layout_margin="8dp"
+                android:onClick="handleFragmentChange"
+        />
+
+        <Button android:layout_width="0dp"
+                android:id="@+id/btn2"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                android:layout_height="wrap_content"
+                android:text="Show B"
+                android:onClick="handleFragmentChange"
+        />
+    </LinearLayout>
+
+    <fragment android:layout_width="match_parent"
+              android:name="com.example.androidstudiolab.FragmentA"
+              android:layout_height="match_parent"
+              android:id="@+id/fragmentId"
+    />
 </LinearLayout>
