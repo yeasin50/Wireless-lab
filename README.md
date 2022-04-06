@@ -23,6 +23,26 @@ Lab2 & Lab3
 
 * [Basic Calculator][lab2 practice]
 
+Lab 4
+- [spinner test example][spinner]
+
+Lab 5
+- [Framgment][fragment]
+
+lab 6
+- [Realtime Database - Firebase][rdb] 
+
+You can find  [assignment file(zip)here][assignment]
+
+
 [lab1 practice]: https://github.com/yeasin50/Wireless-lab/tree/lab1-practice
 
 [lab2 practice]: https://github.com/yeasin50/Wireless-lab/tree/lab2-practice
+
+[spinner]: https://github.com/yeasin50/Wireless-lab/tree/lab3-spinnerTest
+
+[fragment]: https://github.com/yeasin50/Wireless-lab/tree/lab4-fragment
+
+[rdb]: https://github.com/yeasin50/Wireless-lab/tree/assignment_firebase
+
+[assignment]: https://github.com/yeasin50/AssetsFor_/tree/master/wirelessProgramming/spring22
