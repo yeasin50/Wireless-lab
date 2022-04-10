@@ -41,7 +41,8 @@ public class DisplayDataActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Map map = (Map) snapshot.getValue();
-                if (map != null) {
+                if (map == null) {
+                    return;
                 }
 
                 final Set<String> ids = map.keySet();
