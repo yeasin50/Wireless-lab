@@ -32,7 +32,11 @@ Lab 5
 lab 6
 - [Realtime Database - Firebase][rdb] 
 
-You can find  [assignment file(zip)here][assignment]
+> You can find  [assignment file(zip) here][assignment]
+
+Mid Question solve
+- [follow mid-question branch][midQ]
+
 
 
 [lab1 practice]: https://github.com/yeasin50/Wireless-lab/tree/lab1-practice
@@ -46,3 +50,6 @@ You can find  [assignment file(zip)here][assignment]
 [rdb]: https://github.com/yeasin50/Wireless-lab/tree/assignment_firebase
 
 [assignment]: https://github.com/yeasin50/AssetsFor_/tree/master/wirelessProgramming/spring22
+
+
+[midQ]: https://github.com/yeasin50/Wireless-lab/tree/mid-question
