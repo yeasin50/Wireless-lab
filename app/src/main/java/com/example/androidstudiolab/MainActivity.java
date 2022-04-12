@@ -3,7 +3,9 @@ package com.example.androidstudiolab;
 import android.util.Log;
 import android.view.View;
 import android.widget.*;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 
 import static android.content.ContentValues.TAG;
@@ -20,9 +22,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("Spinner Example");
         spinner = findViewById(R.id.spinner_id);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.planets_array, android.R.layout.simple_spinner_item);// you can create custom layout for this
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        ///*optional for not adding on `android:entries="@array/planets_array"`
+//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.planets_array, android.R.layout.simple_spinner_item);// you can create custom layout for this
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
 
 
         textView = findViewById(R.id.resultTextViewID);
